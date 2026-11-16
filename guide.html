@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Frisco & Midway Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Familjen+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Layout: a friend's field guide — town switcher on top, then winter and summer as two numbered lists of picks, each with room for Kerwin's own story. */
+:root{
+  color-scheme:light;
+  --bg:#FAF7F0; --surface:#FFFFFF; --ink:#14223A; --muted:#5E6675; --line:#E6DFD1;
+  --navy:#0D3150; --head:#0D3150; --gold:#C5A273; --gold-ink:#86663B; --tint:#F3EDE1; --red:#B72D39;
+  --winter:#2E5A87; --summer:#9A6A1E;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --body:'Familjen Grotesk','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B1624; --surface:#112033; --ink:#EDE7DC; --muted:#A9B0BC; --line:#253650;
+  --navy:#081A2C; --head:#E2CDA8; --gold:#C5A273; --gold-ink:#D9BE90; --tint:#17283E; --red:#E0707A;
+  --winter:#8DB6E0; --summer:#E2B66A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1624; --surface:#112033; --ink:#EDE7DC; --muted:#A9B0BC; --line:#253650;
+  --navy:#081A2C; --head:#E2CDA8; --gold:#C5A273; --gold-ink:#D9BE90; --tint:#17283E; --red:#E0707A;
+  --winter:#8DB6E0; --summer:#E2B66A; color-scheme:dark}
+*{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--surface)}
+img{max-width:100%}
+[hidden]{display:none!important}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:600;color:var(--head);margin:0;text-wrap:balance;line-height:1.1}
+p{margin:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-weight:600;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-ink)}
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px;flex-wrap:wrap}
+.back{display:flex;align-items:center;gap:10px;text-decoration:none}
+.back svg{width:36px;height:auto}
+.back b{font-family:var(--display);font-weight:700;font-size:18px;color:var(--head);letter-spacing:.5px}
+.sym-navy{fill:var(--head)}.sym-gold{fill:var(--gold)}.sym-red{fill:var(--red)}
+.ctrls{display:flex;gap:10px;align-items:center}
+.seg{display:flex;border:1.5px solid var(--head);border-radius:6px;overflow:hidden}
+.seg button,.seg a{background:none;border:0;color:var(--head);font:600 14px var(--body);padding:7px 12px;cursor:pointer;min-height:38px;text-decoration:none;display:flex;align-items:center}
+.seg [aria-pressed="true"],.seg [aria-current="page"]{background:var(--head);color:var(--bg)}
+/* hero */
+header.hero{padding-block:44px 28px;display:flex;flex-direction:column;gap:12px}
+header.hero h1{font-size:clamp(38px,6vw,60px)}
+header.hero p{max-width:62ch;font-size:18px}
+.note{display:block;background:var(--tint);border-radius:8px;padding:14px 16px;font-size:15px;max-width:70ch}
+.note b{font-family:var(--display);color:var(--head)}
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-block:8px 40px}
+@media (max-width:700px){.facts{grid-template-columns:1fr}}
+.fact{border-top:2px solid var(--gold);padding-top:10px;display:flex;flex-direction:column;gap:4px}
+.fact b{font-family:var(--display);font-size:28px;color:var(--head);line-height:1}
+.fact span{font-size:15px}
+/* seasons */
+section.season{padding-block:12px 36px;display:flex;flex-direction:column;gap:18px}
+.season-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px}
+.season-head h2{font-size:clamp(28px,4vw,38px)}
+.season-head span{font-size:14px;color:var(--muted)}
+.picks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:pick}
+.pick{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 14px;counter-increment:pick}
+.pick>*{grid-column:2;min-width:0}
+.pick::before{content:counter(pick);grid-column:1;grid-row:1/span 7;font-family:var(--display);font-size:30px;font-weight:600;line-height:1;color:var(--gold-ink)}
+.winter .pick::before{color:var(--winter)}
+.summer .pick::before{color:var(--summer)}
+.pick h3{font-size:22px}
+.pick .where{font-size:14px;color:var(--muted)}
+.pick .tip{font-size:15px;border-left:2px solid var(--gold);padding-left:10px;margin-top:6px}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.links a{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;text-decoration:none;border:1.5px solid var(--line);border-radius:99px;padding:6px 12px;min-height:36px;color:var(--head);background:var(--bg)}
+.links a:hover{border-color:var(--gold)}
+.links a svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.eat li a{font-size:14px;color:var(--gold-ink);font-weight:600;text-decoration:none;margin-top:2px}
+.eat li a:hover{text-decoration:underline}
+.story{margin-top:10px;background:var(--tint);border-radius:8px;padding:12px 14px;font-size:15px}
+.story b{font-family:var(--display);color:var(--head);display:block;margin-bottom:4px}
+/* eat */
+.eat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px;list-style:none;margin:0;padding:0}
+@media (max-width:700px){.eat{grid-template-columns:1fr}}
+.eat li{border-bottom:1px solid var(--line);padding-block:8px;display:flex;flex-direction:column;min-width:0}
+.eat li b{font-family:var(--display);font-size:18px;color:var(--head)}
+.eat li span{font-size:15px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding-block:28px 40px;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;flex-direction:column;gap:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="top">
+ <div class="wrap">
+  <a class="back" href="index.html" aria-label="Back to My Trust Home"><svg viewBox="0 0 120 112" aria-hidden="true"><path class="sym-navy" d="M12 58V44L60 6l47 37v13L60 20Z"/><path class="sym-gold" d="M20 57V46L60 15l40 31v10L60 27Z"/><path class="sym-navy" d="M13 54v45h12V55Zm82 4v41h12V47Z"/><path class="sym-navy" d="M51 47h10v10H51zm13 0h10v10H64zM51 60h10v10H51zm13 0h10v10H64z"/><path class="sym-navy" d="M27 75q-4-5-9 0t0 10l27 26q5 4 10-1L115 55l-7-10-59 49Z"/><path class="sym-red" d="m110 43 9 9v13l-12-11Z"/></svg><b>MY TRUST HOME</b></a>
+  <div class="ctrls">
+   <nav class="seg" aria-label="Town">
+    <a href="#frisco" id="t-frisco">Frisco</a>
+    <a href="#midway" id="t-midway">Midway</a>
+   </nav>
+   <div class="seg" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="es" aria-pressed="false">ES</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<main class="wrap" id="app"></main>
+
+<footer>
+ <div class="wrap">
+  <span id="f-note"></span>
+  <span>© 2026 My Trust Home Solutions LLC</span>
+ </div>
+</footer>
+
+<script>
+// Kerwin's stories: write them in `story` (en/es). An item with no story shows no story box.
+const GUIDE = {
+ frisco:{
+  eyebrow:{en:'Frisco, Colorado · 9,100 ft',es:'Frisco, Colorado · 9,100 pies'},
+  title:{en:'Our favorite things to do around Frisco',es:'Lo que más nos gusta hacer en Frisco'},
+  intro:{en:'A small mining town on Lake Dillon, with six ski resorts within about 30 minutes. These are the things we would tell a friend to do, winter and summer.',
+         es:'Un pueblo minero pequeño junto al lago Dillon, con seis estaciones de esquí a unos 30 minutos. Esto es lo que le recomendaríamos a un amigo, en invierno y en verano.'},
+  facts:[
+   {b:'9,100 ft',en:'The sun is stronger up here. Pack sunscreen, even in January.',es:'El sol pega más fuerte aquí arriba. Trae protector solar, incluso en enero.'},
+   {b:'$0',en:'The Summit Stage bus to Copper, Breckenridge and Keystone is free.',es:'El bus Summit Stage a Copper, Breckenridge y Keystone es gratis.'},
+   {b:'1961',en:'The old town of Dillon was moved before the lake was filled.',es:'El antiguo pueblo de Dillon se mudó antes de llenar el lago.'}
+  ],
+  winter:[
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://goodtimesadventures.com/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Good Times Adventures, 6061 Tiger Rd, Breckenridge, CO"]],t:{en:'Snowmobile to the Continental Divide',es:'Motonieve hasta la Divisoria Continental'},
+    w:{en:'Breckenridge · ~15 min',es:'Breckenridge · ~15 min'},
+    d:{en:'Guided rides take you up through the trees to wide-open views above treeline. No experience needed; the guides teach you before you start.',es:'Tours guiados que suben entre los pinos hasta vistas abiertas por encima de la línea de árboles. No necesitas experiencia: los guías te enseñan antes de salir.'},
+    tip:{en:'Good Times Adventures is a long-time outfitter. Book a few days ahead in holiday weeks.',es:'Good Times Adventures es un operador con muchos años. Reserva con unos días de anticipación en semanas festivas.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://www.townoffrisco.com/things-to-do/frisco-adventure-park/tubing/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Frisco Adventure Park, 621 Recreation Way, Frisco, CO 80443"]],t:{en:'Snow tubing at Frisco Adventure Park',es:'Snow tubing en Frisco Adventure Park'},
+    w:{en:'Frisco · ~5 min',es:'Frisco · ~5 min'},
+    d:{en:'A lift pulls you to the top, then you fly down groomed lanes. Fun for every age, and you do not need to know how to ski.',es:'Un remolque te sube y bajas volando por carriles preparados. Divertido para todas las edades y no hace falta saber esquiar.'},
+    tip:{en:'Sessions sell out on weekends and holidays, so book online.',es:'Las sesiones se agotan en fines de semana y festivos: reserva en línea.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://gobreck.com/trip-ideas/family-friendly/sledding-in-breckenridge"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Carter Park, Breckenridge, CO"]],t:{en:'Sledding on a free hill',es:'Deslizarse en trineo gratis'},
+    w:{en:'Frisco and Breckenridge',es:'Frisco y Breckenridge'},
+    d:{en:'Bring a cheap plastic sled and spend an afternoon on a snowy hill, like a kid again. It costs nothing.',es:'Lleva un trineo de plástico barato y pasa la tarde en una loma nevada, como cuando eras niño. No cuesta nada.'},
+    tip:{en:'Free public hills in Frisco and Breckenridge have had closures lately. Check which one is open before you go.',es:'Las lomas públicas gratuitas de Frisco y Breckenridge han tenido cierres últimamente. Confirma cuál está abierta antes de ir.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://www.keystoneresort.com/explore-the-resort/activities-and-events/winter-activities.aspx"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Keystone Lake, Lakeside Village, Keystone, CO 80435"]],t:{en:'Ice skating on Keystone Lake',es:'Patinar sobre el lago de Keystone'},
+    w:{en:'Keystone Village · ~20 min',es:'Keystone Village · ~20 min'},
+    d:{en:'A huge outdoor rink on a frozen lake with mountains on every side. Skate rentals are right there.',es:'Una pista enorme al aire libre sobre un lago congelado con montañas por todos lados. Alquilan patines ahí mismo.'},
+    tip:{en:'Go late afternoon and stay for hot chocolate in the village.',es:'Ve al final de la tarde y quédate por un chocolate caliente en el pueblo.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://www.breckenridge.com/the-mountain/about-the-mountain/mountain-info.aspx"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"BreckConnect Gondola, 170 Watson Ave, Breckenridge, CO 80424"]],t:{en:'The free gondola and Breckenridge at night',es:'La góndola gratis y Breckenridge de noche'},
+    w:{en:'Breckenridge · ~15 min or the free bus',es:'Breckenridge · ~15 min o el bus gratis'},
+    d:{en:'The BreckConnect Gondola links town to the base of the mountain and costs nothing. Ride it at dusk, then walk Main Street when the lights come on.',es:'La góndola BreckConnect une el pueblo con la base de la montaña y es gratis. Súbete al atardecer y después camina por Main Street cuando se encienden las luces.'},
+    tip:{en:'Runs early November to early May. Take the bus and skip the parking.',es:'Funciona de principios de noviembre a principios de mayo. Ve en bus y olvídate del estacionamiento.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://gobreck.com/event/international-snow-sculpture-championships"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Breckenridge Riverwalk Center, 150 W Adams Ave, Breckenridge, CO"]],t:{en:'International Snow Sculpture Championships',es:'Campeonato Internacional de Esculturas de Nieve'},
+    w:{en:'Breckenridge · late January',es:'Breckenridge · finales de enero'},
+    d:{en:'Teams from around the world carve giant blocks of snow into sculptures. Free to see, and lit up at night.',es:'Equipos de todo el mundo tallan bloques de nieve gigantes. Es gratis y de noche las iluminan.'},
+    tip:{en:'2027: sculpting Jan 23–27, viewing Jan 27–Feb 2. Dates change every year.',es:'2027: tallado del 23 al 27 de enero y exhibición del 27 de enero al 2 de febrero. Las fechas cambian cada año.'}}
+  ],
+  summer:[
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://www.townoffrisco.com/things-to-do/frisco-bay-marina/rentals/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Frisco Bay Marina, 267 Marina Rd, Frisco, CO 80443"]],t:{en:'Paddleboard or kayak on Lake Dillon',es:'Paddle o kayak en el lago Dillon'},
+    w:{en:'Frisco Bay Marina · ~5 min',es:'Frisco Bay Marina · ~5 min'},
+    d:{en:'Rent a stand-up paddleboard or kayak and glide across a mountain lake at 9,000 feet.',es:'Alquila una tabla de paddle o un kayak y deslízate por un lago de montaña a 9,000 pies.'},
+    tip:{en:'Go early. Wind picks up in the afternoon.',es:'Ve temprano: el viento sube en la tarde.'}},
+   {web:[[{"en": "Frisco Bay Marina", "es": "Frisco Bay Marina"},"https://www.townoffrisco.com/things-to-do/frisco-bay-marina/rentals/"],[{"en": "Dillon Marina", "es": "Dillon Marina"},"https://www.townofdillon.com/marina"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Dillon Marina, Dillon, CO"]],t:{en:'Pontoon boat or sailing',es:'Pontón o velero'},
+    w:{en:'Frisco Bay or Dillon Marina',es:'Frisco Bay o Dillon Marina'},
+    d:{en:'A pontoon fits the whole group with snacks and a cooler. Dillon Marina also has lake cruises and sailboats.',es:'Un pontón cabe todo el grupo con comida y una hielera. Dillon Marina también tiene paseos por el lago y veleros.'},
+    tip:{en:'Book ahead on summer weekends.',es:'Reserva con tiempo los fines de semana de verano.'}},
+   {web:[[{"en": "Path maps", "es": "Mapas del sendero"},"https://summitbiking.org/summit-rec-path-maps"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Summit County Recpath, Frisco, CO"]],t:{en:'Bike the rec path',es:'Bici por el rec path'},
+    w:{en:'Starts in Frisco',es:'Sale desde Frisco'},
+    d:{en:'Paved, car-free paths connect Frisco with Breckenridge, Copper, Dillon and Keystone, through forest and along the lake.',es:'Senderos pavimentados y sin carros unen Frisco con Breckenridge, Copper, Dillon y Keystone, entre bosque y orilla del lago.'},
+    tip:{en:'Rent a bike on Main Street. Frisco to Breckenridge is a gentle uphill; the ride back is the reward.',es:'Alquila la bici en Main Street. De Frisco a Breck es una subida suave; la vuelta es el premio.'}},
+   {web:[[{"en": "Breckenridge (summer)", "es": "Breckenridge (verano)"},"https://www.breckenridge.com/explore-the-resort/activities-and-events/summer-activities/epic-discovery.aspx"],[{"en": "Copper Mountain", "es": "Copper Mountain"},"https://visitcoppermountain.com/summer-activities/rocky-mountain-coaster"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Rocky Mountain Coaster, Center Village, Copper Mountain, CO"]],t:{en:'Alpine coaster',es:'Montaña rusa alpina'},
+    w:{en:'Breckenridge or Copper',es:'Breckenridge o Copper'},
+    d:{en:'A mountain coaster that runs down through the trees. You control the speed, and kids love it.',es:'Una montaña rusa que baja entre los árboles. Tú controlas la velocidad y a los niños les encanta.'},
+    tip:{en:'Lines are shortest right at opening.',es:'Las filas son más cortas justo al abrir.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://www.townofdillon.com/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Dillon Amphitheater, Dillon, CO"]],t:{en:'Concerts at the Dillon Amphitheater',es:'Conciertos en el Dillon Amphitheater'},
+    w:{en:'Dillon · ~10 min',es:'Dillon · ~10 min'},
+    d:{en:'An outdoor amphitheater on the shore of Lake Dillon, with summer shows and the mountains as a backdrop.',es:'Un anfiteatro al aire libre a orillas del lago Dillon, con espectáculos en verano y las montañas de fondo.'},
+    tip:{en:'Check the Town of Dillon calendar for this summer\'s lineup.',es:'Revisa el calendario del Town of Dillon para ver la programación del verano.'}}
+  ],
+  eat:[
+   ['Butterhorn Bakery',{en:'The classic Frisco breakfast',es:'El desayuno clásico de Frisco'},'Butterhorn Bakery & Cafe, Frisco, CO'],
+   ['Bird Craft',{en:'Fried chicken sandwiches, steps from the studio',es:'Sándwiches de pollo frito, a pasos del estudio'},'Bird Craft, Frisco, CO'],
+   ['Ein Prosit',{en:'German beer hall with a big beer garden',es:'Cervecería alemana con jardín'},'Ein Prosit, Frisco, CO'],
+   ['Vinny\'s',{en:'Italian, for a nice dinner',es:'Italiano, para una buena cena'},"Vinny's, Frisco, CO"],
+   ['Kemosabe at Silverheels',{en:'Sushi and steak on Main St',es:'Sushi y carnes en Main St'},'Kemosabe at Silverheels, Frisco, CO'],
+   ['Eric\'s · Breckenridge',{en:'Burgers, pizza and an arcade. Great with kids',es:'Hamburguesas, pizza y arcade. Ideal con niños'},"Downstairs at Eric's, Breckenridge, CO"],
+   ['Dillon Dam Brewery',{en:'Brewpub by the lake',es:'Cervecería junto al lago'},'Dillon Dam Brewery, Dillon, CO'],
+   ['Bread+Salt',{en:'Brunch, bagels and coffee',es:'Brunch, bagels y café'},'Bread+Salt, Frisco, CO']
+  ]
+ },
+ midway:{
+  eyebrow:{en:'Midway, Utah · Heber Valley',es:'Midway, Utah · Heber Valley'},
+  title:{en:'Our favorite things to do around Midway',es:'Lo que más nos gusta hacer en Midway'},
+  intro:{en:'Utah\'s Little Switzerland: a green valley under the Wasatch, settled by Swiss families in the 1800s, with Park City and Deer Valley less than 30 minutes away.',
+         es:'La pequeña Suiza de Utah: un valle verde bajo el Wasatch, fundado por familias suizas en el siglo XIX, con Park City y Deer Valley a menos de 30 minutos.'},
+  facts:[
+   {b:'~95°F',en:'Water temperature in the Homestead Crater, a geothermal pool inside a limestone dome.',es:'Temperatura del agua del Homestead Crater, una piscina geotermal dentro de una cúpula de piedra.'},
+   {b:'2002',en:'Soldier Hollow, next door, hosted events of the Salt Lake Winter Olympics.',es:'Soldier Hollow, al lado, fue sede de pruebas de los Olímpicos de Invierno de Salt Lake.'},
+   {b:'<1 hr',en:'From Salt Lake City airport. Park City and Deer Valley in under 30 minutes.',es:'Desde el aeropuerto de Salt Lake City. Park City y Deer Valley a menos de 30 minutos.'}
+  ],
+  winter:[
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://homesteadmidwayutah.com/adventures/crater/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Homestead Crater, 700 N Homestead Dr, Midway, UT 84049"]],t:{en:'Swim inside the Homestead Crater',es:'Nadar dentro del Homestead Crater'},
+    w:{en:'Midway · minutes from the resort',es:'Midway · a minutos del resort'},
+    d:{en:'A hidden geothermal pool inside a limestone dome, with warm mineral water all year. Floating there while it snows outside is unforgettable.',es:'Una piscina geotermal escondida dentro de una cúpula de piedra caliza, con agua mineral tibia todo el año. Flotar ahí mientras nieva afuera es inolvidable.'},
+    tip:{en:'Reserve your time slot ahead. The Crater closes for renovations in April and May 2027.',es:'Reserva tu horario con anticipación. El Crater cierra por renovación en abril y mayo de 2027.'}},
+   {web:[[{"en": "Park City Mountain", "es": "Park City Mountain"},"https://www.parkcitymountain.com/"],[{"en": "Deer Valley", "es": "Deer Valley"},"https://www.deervalley.com/things-to-do"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Park City Mountain, 1345 Lowell Ave, Park City, UT 84060"]],t:{en:'Ski Park City or Deer Valley',es:'Esquiar en Park City o Deer Valley'},
+    w:{en:'Under 30 minutes',es:'A menos de 30 minutos'},
+    d:{en:'Two of the best-known ski resorts in the country, a short drive over the hill. Come back to a quiet valley at night.',es:'Dos de las estaciones de esquí más famosas del país, a un viaje corto en auto. De noche vuelves a un valle tranquilo.'},
+    tip:{en:'Leave early on powder days.',es:'Sal temprano los días de nieve fresca.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://utaholympiclegacy.org/location/soldier-hollow/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Soldier Hollow Nordic Center, 2002 Soldier Hollow Ln, Midway, UT 84049"]],t:{en:'Tubing at Soldier Hollow',es:'Tubing en Soldier Hollow'},
+    w:{en:'Midway · ~5 min',es:'Midway · ~5 min'},
+    d:{en:'Long, lift-served tubing lanes at the old Olympic venue, with night sessions under the lights.',es:'Carriles largos de tubing con remolque en la antigua sede olímpica, con sesiones nocturnas bajo las luces.'},
+    tip:{en:'Night tubing is the best version.',es:'El tubing nocturno es lo mejor.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://www.rockymtnoutfitters.com/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Soldier Hollow, Midway, UT"]],t:{en:'Horse-drawn sleigh ride',es:'Paseo en trineo de caballos'},
+    w:{en:'Near Soldier Hollow',es:'Cerca de Soldier Hollow'},
+    d:{en:'Blankets, bells and a team of horses across the snowy fields of the valley. Very Swiss, very Midway.',es:'Mantas, cascabeles y caballos por los campos nevados del valle. Muy suizo, muy Midway.'},
+    tip:{en:'Confirm this season\'s dates with the outfitter and book ahead around the holidays.',es:'Confirma las fechas de esta temporada con el operador y reserva con tiempo en las fiestas.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://www.visitutah.com/articles/snowmobiling-heber-valley"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Wasatch Mountain State Park, 1281 Warm Springs Rd, Midway, UT"]],t:{en:'Snowmobiling in Wasatch Mountain State Park',es:'Motonieve en Wasatch Mountain State Park'},
+    w:{en:'Snake Creek Canyon · Midway',es:'Snake Creek Canyon · Midway'},
+    d:{en:'Groomed trails climb out of Midway toward Guardsman Pass, with big views of the valley.',es:'Senderos preparados que suben desde Midway hacia Guardsman Pass, con vistas enormes del valle.'},
+    tip:{en:'Wasatch Excursions is the park\'s licensed outfitter for guided tours.',es:'Wasatch Excursions es el operador autorizado del parque para tours guiados.'}},
+   {t:{en:'Eat like a local in Midway',es:'Comer como local en Midway'},
+    w:{en:'Main Street and around',es:'Main Street y alrededores'},
+    d:{en:'Small-town restaurants with real character, from wood-fired pizza to fine dining in an old inn. See our list below.',es:'Restaurantes de pueblo con mucho carácter, desde pizza a la leña hasta alta cocina en una posada antigua. Mira la lista abajo.'},
+    tip:{en:'The bakery at the Zermatt Resort is right downstairs.',es:'La panadería del Zermatt Resort está en el mismo edificio.'}}
+  ],
+  summer:[
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://homesteadmidwayutah.com/adventures/crater/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Homestead Crater, 700 N Homestead Dr, Midway, UT 84049"]],t:{en:'Snorkel the Homestead Crater',es:'Snorkel en el Homestead Crater'},
+    w:{en:'Midway',es:'Midway'},
+    d:{en:'In summer the crater is just as magical. Snorkel or even scuba dive in clear, warm water deep inside the rock.',es:'En verano el cráter es igual de mágico. Haz snorkel o incluso buceo en agua clara y tibia dentro de la roca.'},
+    tip:{en:'Scuba needs certification or a guided intro dive.',es:'Para bucear necesitas certificación o una inmersión guiada.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://stateparks.utah.gov/parks/deer-creek/discover"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Deer Creek State Park, Heber City, UT"]],t:{en:'A day on Deer Creek Reservoir',es:'Un día en el lago Deer Creek'},
+    w:{en:'Heber Valley · short drive',es:'Heber Valley · cerca en auto'},
+    d:{en:'Boats, paddleboards and open water in a reservoir surrounded by mountains.',es:'Botes, tablas de paddle y agua abierta en un lago rodeado de montañas.'},
+    tip:{en:'Afternoon wind is great for sailing, less so for paddling.',es:'El viento de la tarde es bueno para velear, no tanto para el paddle.'}},
+   {web:[[{"en": "Wasatch Mountain", "es": "Wasatch Mountain"},"https://stateparks.utah.gov/parks/wasatch-mountain/wasatch-mountain-golf-course/"],[{"en": "Soldier Hollow", "es": "Soldier Hollow"},"https://stateparks.utah.gov/golf/soldier-hollow"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Wasatch Mountain Golf Course, Midway, UT"]],t:{en:'Golf between mountains',es:'Golf entre montañas'},
+    w:{en:'Wasatch Mountain State Park · Soldier Hollow',es:'Wasatch Mountain State Park · Soldier Hollow'},
+    d:{en:'Mountain golf courses with the Wasatch peaks behind the greens.',es:'Campos de golf de montaña con los picos del Wasatch detrás de los greens.'},
+    tip:{en:'September and October are beautiful for golf here.',es:'Septiembre y octubre son preciosos para jugar aquí.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://stateparks.utah.gov/parks/wasatch-mountain/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Wasatch Mountain State Park, 1281 Warm Springs Rd, Midway, UT"]],t:{en:'Hike Wasatch Mountain State Park',es:'Senderismo en Wasatch Mountain State Park'},
+    w:{en:'Right above Midway',es:'Justo arriba de Midway'},
+    d:{en:'Trails through aspen forest and wildflower meadows, starting minutes from town.',es:'Senderos entre bosques de álamos y prados de flores, a minutos del pueblo.'},
+    tip:{en:'Start early to beat the afternoon heat.',es:'Sal temprano para evitar el calor de la tarde.'}},
+   {web:[[{"en": "Website", "es": "Sitio web"},"https://historicparkcityutah.com/"]],map:[[{"en": "Directions", "es": "Cómo llegar"},"Historic Main Street, Park City, UT"]],t:{en:'Park City Main Street',es:'Main Street de Park City'},
+    w:{en:'Under 30 minutes',es:'A menos de 30 minutos'},
+    d:{en:'Historic Main Street full of galleries, shops and restaurants, with mountain views at the top of the street.',es:'Una Main Street histórica llena de galerías, tiendas y restaurantes, con vista a la montaña al final de la calle.'},
+    tip:{en:'Park once and walk the whole street.',es:'Estaciona una vez y camina toda la calle.'}}
+  ],
+  eat:[
+   ['The Blue Boar Inn',{en:'Fine dining in a European-style inn',es:'Alta cocina en una posada estilo europeo'},'The Blue Boar Inn, Midway, UT'],
+   ['Midway Mercantile',{en:'Modern American cooking',es:'Cocina americana moderna'},'Midway Mercantile, Midway, UT'],
+   ['Café Galleria',{en:'Wood-fired pizza, bagels and breakfast',es:'Pizza a la leña, bagels y desayunos'},'Cafe Galleria, Midway, UT'],
+   ['Simon\'s at Homestead',{en:'Mountain-style cooking with local ingredients',es:'Cocina de montaña con ingredientes locales'},"Simon's Restaurant, Homestead Resort, Midway, UT"],
+   ['Lola\'s Street Kitchen',{en:'Globally inspired street food',es:'Comida callejera de todo el mundo'},"Lola's Street Kitchen, Midway, UT"],
+   ['1886 Grill | Smokehouse',{en:'Smoked meats and comfort food',es:'Carnes ahumadas y comida casera'},'1886 Grill Smokehouse, Midway, UT'],
+   ['The Pizza Yard',{en:'Wood-fired pizza',es:'Pizza a la leña'},'The Pizza Yard, Midway, UT'],
+   ['Maya\'s Mexican Food',{en:'Home-style Mexican',es:'Comida mexicana casera'},"Maya's Mexican Food, Midway, UT"]
+  ]
+ }
+};
+const UI = {
+ en:{winter:'Winter',summer:'Summer',wsub:'December – March',ssub:'June – September',eat:'Where to eat',eatsub:'Kerwin\'s notes coming soon',from:'From Kerwin',dir:'Directions',web:'Website',
+     note:'<b>Written like a friend would.</b> Kerwin is adding his own stories one by one: the restaurants he loved, the activities that surprised him, and what he would skip.',
+     foot:'Hours, seasons and prices change. Check with each place before you go.'},
+ es:{winter:'Invierno',summer:'Verano',wsub:'diciembre – marzo',ssub:'junio – septiembre',eat:'Dónde comer',eatsub:'Pronto, las notas de Kerwin',from:'Desde la experiencia de Kerwin',dir:'Cómo llegar',web:'Sitio web',
+     note:'<b>Escrito como lo haría un amigo.</b> Kerwin va agregando sus propios relatos poco a poco: los restaurantes que más le gustaron, las actividades que lo sorprendieron y lo que no repetiría.',
+     foot:'Horarios, temporadas y precios cambian. Confirma con cada lugar antes de ir.'}
+};
+let lang='en';
+try{ if(localStorage.getItem('mth-lang')==='es') lang='es'; }catch(e){}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function town(){ const h=location.hash.replace('#',''); return GUIDE[h]?h:'frisco'; }
+const gmaps=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const IC_WEB='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>';
+const IC_MAP='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
+function linksHTML(p){
+ const L=[];
+ (p.web||[]).forEach(w=>L.push(`<a href="${esc(w[1])}" target="_blank" rel="noopener">${IC_WEB}${esc(w[0][lang]||w[0])}</a>`));
+ (p.map||[]).forEach(m=>L.push(`<a href="${gmaps(m[1])}" target="_blank" rel="noopener">${IC_MAP}${esc(m[0][lang]||m[0])}</a>`));
+ return L.length?`<div class="links">${L.join('')}</div>`:'';
+}
+function pickHTML(p){
+ const st=p.story&&p.story[lang];
+ return `<li class="pick"><h3>${esc(p.t[lang])}</h3><div class="where">${esc(p.w[lang])}</div><p>${esc(p.d[lang])}</p><p class="tip">${esc(p.tip[lang])}</p>${linksHTML(p)}${st?`<div class="story"><b>${UI[lang].from}</b>${esc(st)}</div>`:''}</li>`;
+}
+function render(){
+ const k=town(), g=GUIDE[k], u=UI[lang];
+ document.documentElement.lang=lang;
+ document.title = k==='frisco' ? 'Frisco & Midway Guide' : 'Frisco & Midway Guide';
+ document.getElementById('app').innerHTML=`
+  <header class="hero">
+   <div class="eyebrow">${esc(g.eyebrow[lang])}</div>
+   <h1>${esc(g.title[lang])}</h1>
+   <p>${esc(g.intro[lang])}</p>
+   <div class="note">${u.note}</div>
+  </header>
+  <div class="facts">${g.facts.map(f=>`<div class="fact"><b>${esc(f.b)}</b><span>${esc(f[lang])}</span></div>`).join('')}</div>
+  <section class="season winter"><div class="season-head"><h2>${u.winter}</h2><span>${u.wsub}</span></div><ol class="picks">${g.winter.map(pickHTML).join('')}</ol></section>
+  <section class="season summer"><div class="season-head"><h2>${u.summer}</h2><span>${u.ssub}</span></div><ol class="picks">${g.summer.map(pickHTML).join('')}</ol></section>
+  <section class="season"><div class="season-head"><h2>${u.eat}</h2><span>${u.eatsub}</span></div><ul class="eat" id="eat">${g.eat.map(([n,d,q])=>`<li><b>${esc(n)}</b><span>${esc(d[lang])}</span><a href="${gmaps(q||n)}" target="_blank" rel="noopener">${UI[lang].dir} ↗</a></li>`).join('')}</ul></section>`;
+ document.getElementById('f-note').textContent=u.foot;
+ document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
+ ['frisco','midway'].forEach(t=>{const a=document.getElementById('t-'+t); if(t===k)a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');});
+}
+document.querySelector('[aria-label="Language"]').addEventListener('click',e=>{const b=e.target.closest('button'); if(!b)return; lang=b.dataset.lang; try{localStorage.setItem('mth-lang',lang);}catch(err){} render();});
+window.addEventListener('hashchange',()=>{render(); window.scrollTo(0,0);});
+render();
+</script>
+</body>
+</html>
